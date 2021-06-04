@@ -16,8 +16,6 @@ from django.db.models import Count
 from django.http import JsonResponse
 from datetime import timedelta
 
-from ipware import get_client_ip
-
 
 # Create your views here.
 
@@ -101,17 +99,13 @@ def search(request):
 
 
 def getClientIp(request):
-
-    client_ip, is_routable = get_client_ip(request)
-    if client_ip is None:
-        print('unable to get the client s ip address')
-    else:
-        print(client_ip)
-    if is_routable:
-        print('The client s IP address is publicly routable on the Internet')
-    else:
-        print('The client s IP address is private')
-    return render(request, 'Blog/getClientIp.html', {'ip': client_ip})
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+            return render(request, 'Blog/getClientIp.html', {"ip": ip})
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+            return render(request, 'Blog/getClientIp.html', {"ip": ip})
 
 
 
