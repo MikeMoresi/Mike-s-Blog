@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block index %}
+<h1>Hello</h1>
+<form action="/search/" method="get">
+    {% csrf_token %}
+
+    Write your string: <input type="text" name="str1"><br>
+    <input type="submit">
+</form>
+{% endblock%}

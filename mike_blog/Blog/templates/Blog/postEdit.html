@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block postEdit %}
+{% if user.is_authenticated %}
+     <h2>New post</h2>
+     <form method="POST" class="post-form">
+         {% csrf_token %}
+         {{ form.as_p }}
+         {%if my_query == True %}
+         {%endif%}
+         <button type="submit" class="save btn btn-default">Save</button>
+     </form>
+{% else %}
+<h2>OPS! You are not logged in</h2>
+<button type="submit"><a href="{% url 'logout' %}">Login</a></button>
+{% endif %}
+{% endblock %}

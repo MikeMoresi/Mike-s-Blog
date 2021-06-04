@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block singUp %}
+<div>
+<h2>Sing Up</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sing Up</button>
+</form>
+<h3>Already have an account?</h3>
+<button type="submit"><a href="/account/login/">Login</a> </button>
+</div>
+{% endblock %}
+
+

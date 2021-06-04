@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block postList %}
+    {% if user.is_authenticated %}
+            <div class="name">
+                <p><strong>Hi {{ user.username }}!</strong>
+            </div>
+            <div class="button">
+                 <button><a href="/Post/new/">New Post</a> </button>
+                <button type="submit>"><a href="{% url 'logout' %}">Log Out</a></button>
+            </div>
+
+            {% for post in posts %}
+                <div>
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+    {% else %}
+            <h2>OPS! You are not logged in</h2>
+            <button type="submit"><a href="{% url 'logout' %}">Login</a></button>
+            </div>
+
+    {% endif %}
+{% endblock %}

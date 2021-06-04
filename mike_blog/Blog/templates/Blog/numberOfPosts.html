@@ -1,0 +1,7 @@
+{% block NumberOfPosts %}
+
+{% for creator in users %}
+      <p>{{creator}} has written {{creator.post_count}} posts so far</p>
+{% endfor %}
+
+{% endblock %}

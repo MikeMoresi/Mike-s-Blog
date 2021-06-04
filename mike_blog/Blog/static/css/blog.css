@@ -1,0 +1,33 @@
+
+/* Header/Mike's Blog */
+body{
+background-color: #d8e3e7;
+}
+
+.header {
+  font-family: montserrat,sans-serif;
+  color: #126e82;
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+
+}
+
+/* Add a card effect for articles */
+.mikeBlog {
+  color: #126e82;
+  background-color: #d8e3e7;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.mikeBlog a{
+ color: #126e82
+}
+
+
+
+
+
+
+
