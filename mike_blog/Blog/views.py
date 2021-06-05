@@ -21,12 +21,12 @@ from datetime import timedelta
 
 def postList(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'Blog/postList.html', {'posts' : posts})
+    return render(request, 'blog/postList.html', {'posts' : posts})
 
 class SingUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
-    template_name = 'Blog/singUp.html'
+    template_name = 'blog/singUp.html'
 
 
 
@@ -42,18 +42,18 @@ def postNew(request):
             return redirect(('postList'))
     else:
         form = PostForms()
-    return render(request, 'Blog/postEdit.html', {'form': form,})
+    return render(request, 'blog/postEdit.html', {'form': form,})
 
 @staff_member_required
 def numberOfPosts(request):
     users = User.objects.all().annotate(post_count=Count('post'))
     for creator in users:
         creator.post_count
-    return render(request, 'Blog/numberOfPosts.html',{'users':users})
+    return render(request, 'blog/numberOfPosts.html',{'users':users})
 
 def profile(request,username,id):
     User.objects.get(username=username,id=id)
-    return render(request, 'Blog/profile.html', {})
+    return render(request, 'blog/profile.html', {})
 
 def postLastHour(request):
     response= []
@@ -74,7 +74,7 @@ def postLastHour(request):
     return JsonResponse(response,safe=False)
 
 def index(request):
-    return render(request, 'Blog/index.html',{})
+    return render(request, 'blog/index.html',{})
 
 def search(request):
     user_string = request.GET['str1']
@@ -95,17 +95,17 @@ def search(request):
 #                count += 1
 #                start = a+1
 
-    return render(request, 'Blog/search.html',{'user_string':user_string,'posts':posts,'count':count})
+    return render(request, 'blog/search.html',{'user_string':user_string,'posts':posts,'count':count})
 
 
 def getClientIp(request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[0]
-            return render(request, 'Blog/getClientIp.html', {"ip": ip})
+            return render(request, 'blog/getClientIp.html', {"ip": ip})
         else:
             ip = request.META.get('REMOTE_ADDR')
-            return render(request, 'Blog/getClientIp.html', {"ip": ip})
+            return render(request, 'blog/getClientIp.html', {"ip": ip})
 
 
 
