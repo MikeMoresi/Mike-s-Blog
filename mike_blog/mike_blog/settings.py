@@ -133,4 +133,4 @@ LOGOUT_REDIRECT_URL = '/account/login/'
 
 APPEND_SLASH=False
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = 'mike_blog/Blog/static/css/blog.css'
