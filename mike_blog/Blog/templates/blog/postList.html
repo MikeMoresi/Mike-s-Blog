@@ -2,10 +2,10 @@
 
 {% block postList %}
     {% if user.is_authenticated %}
-            <div class="name">
+            <div>
                 <p><strong>Hi {{ user.username }}!</strong>
             </div>
-            <div class="button">
+            <div>
                  <button><a href="/Post/new/">New Post</a> </button>
                 <button type="submit>"><a href="{% url 'logout' %}">Log Out</a></button>
             </div>

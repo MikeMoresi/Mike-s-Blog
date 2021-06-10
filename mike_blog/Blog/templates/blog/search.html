@@ -4,13 +4,16 @@
 
 you searched.. {{ user_string }}
 
-<p>here a list of posts where you can read something about {{user_string}}</p>
+<p>you can find here a list of posts containing the words {{user_string}}</p>
 {% for post in posts %}
+
+{{user_string}} appears.. {{count}} times
+
 <div>
     <h2><strong>{{ post.title }}</strong></h2>
     <p>{{ post.text|linebreaksbr }}</p>
 </div>
 {% endfor %}
 
-{{user_string}} appears.. {{count}} times
+
 {%endblock%}

@@ -1,7 +1,9 @@
+{% extends 'blog/base.html' %}
+
 {% block NumberOfPosts %}
-
+<div>
 {% for creator in users %}
-      <p>{{creator}} has written {{creator.post_count}} posts so far</p>
+      <h5>{{creator}} has written {{creator.post_count}} posts so far</h5>
 {% endfor %}
-
+</div>
 {% endblock %}
