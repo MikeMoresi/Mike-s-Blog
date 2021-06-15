@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from .utils import sendTransaction
 import hashlib
+
 # Create your models here.
 
 class Post(models.Model):
