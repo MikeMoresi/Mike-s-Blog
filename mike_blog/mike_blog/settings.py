@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-fj870&o1=bsd^=_#95@@g+93al9^^pkmou26lo=n8eg(9=@o0r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['michaelmoresi.pythonanywhere.com']
+ALLOWED_HOSTS = []#'michaelmoresi.pythonanywhere.com'
 
 
 # Application definition
@@ -130,6 +130,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/Post'
 LOGOUT_REDIRECT_URL = '/account/login/'
+
+
 
 APPEND_SLASH=False
 

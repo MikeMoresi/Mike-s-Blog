@@ -3,6 +3,9 @@
 {% block postList %}
     {% if user.is_authenticated %}
             <div>
+                {{ errMsg }}
+            </div>
+            <div>
                 <p><strong>Hi {{ user.username }}!</strong>
             </div>
             <div>
@@ -14,6 +17,8 @@
                 <div>
                     <h2>{{ post.title }}</h2>
                     <p>{{ post.text|linebreaksbr }}</p>
+                    <p>Hash: {{ post.hash }}</p>
+                    <p>txId: <a href="https://ropsten.etherscan.io/tx/{{post.txId}}">{{ post.txId }}</a></p>
                 </div>
             {% endfor %}
     {% else %}

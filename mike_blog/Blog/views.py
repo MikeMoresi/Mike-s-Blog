@@ -1,3 +1,4 @@
+import redis
 from django.shortcuts import render
 from .models import Post
 from django.utils import timezone
@@ -21,14 +22,24 @@ from datetime import timedelta
 
 def postList(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/postList.html', {'posts' : posts})
+
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    client = redis.StrictRedis(host='127.0.0.1', port=6379, db=0, password=None, decode_responses=True)
+    client.lpush('ipList', ip)
+    if client.lindex('ipList', 0) != client.lindex('ipList', 1):
+        errMsg = 'Your IP address is different than before!'
+    else:
+        errMsg = ''
+    return render(request, 'blog/postList.html', {'posts' : posts,'errMsg':errMsg})
 
 class SingUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'blog/singUp.html'
-
-
 
 def postNew(request):
     if request.method == "POST":
@@ -38,6 +49,7 @@ def postNew(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.created_date = timezone.now()
+            post.writeOnChain()
             post.save()
             return redirect(('postList'))
     else:
@@ -82,33 +94,6 @@ def search(request):
     count = 0
     for post in posts:
         count = post.text.count(user_string)
-
-#    flag = True
-#    start = 0
-#    count = 0
-#    for post in posts:
-#        while flag:
-#            a = post.text.find(user_string,start)
-#            if a == -1:
-#                flag = False
-#            else:
-#                count += 1
-#                start = a+1
-
     return render(request, 'blog/search.html',{'user_string':user_string,'posts':posts,'count':count})
-
-
-def getClientIp(request):
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
-            return render(request, 'blog/getClientIp.html', {"ip": ip})
-        else:
-            ip = request.META.get('REMOTE_ADDR')
-            return render(request, 'blog/getClientIp.html', {"ip": ip})
-
-
-
-
 
 

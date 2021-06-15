@@ -13,5 +13,4 @@ urlpatterns = [
     path('postLastHour',views.postLastHour, name='postLastHour'),
     path('search/', views.search, name='search'),
     path('index/',views.index, name='index'),
-    path('getClientIp', views.getClientIp, name='getClientIp'),
 ]
