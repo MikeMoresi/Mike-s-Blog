@@ -10,38 +10,34 @@
      body,h1,h2,h3,h4,h5,h6,h7 {font-family: cursive;}
 </style>
 
-<header class="w3-container w3-grey w3-center">
+<header class="w3-container w3-sand w3-center">
     <h1>Mike's Blog</h1>
 </header>
 
 <body>
 
-<div class="w3-container w3-grey w3-center">
-    <h3>Welcome!!</h3>
-    <h4>On this blog,</h4>
-    <h4>you can write whatever you want about cryptocurrencies</h4>
-</div>
+  <header class="w3-display-container w3-wide" id="home">
+    <img class="w3-image" src="{% static 'media/image1.jpg' %}" alt="image" width="1600" height="1060">
+    <div class="w3-display-right w3-padding-large">
+      <h6><button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" ><a href="/singUp" style="text-decoration:none">Sing up</a></button></h6>
+      <h6><button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" type="submit>"><a href="{% url 'logout' %}" style="text-decoration:none">Log Out</a></button></h6>
+    </div>
+  </header>
 
-<div class="image">
-    <img src="{% static 'media/image1.jpg' %}" alt="image" style="width:100%" class="w3-grayscale-max">
-</div>
-
-<div class="w3-bar-center w3-grey w3-center">
-    <button class="w3-bar-item w3-button tablink"> <a href="/singUp" style="text-decoration:none">request1</a></button>
-    <button class="w3-bar-item w3-button tablink"> <a href="/Post" style="text-decoration:none">request2</a></button>
-    <button class="w3-bar-item w3-button tablink"> <a href="/numberOfPosts" style="text-decoration:none">request3</a></button>
-    <button class="w3-bar-item w3-button tablink"> <a href="/<username>/<id>" style="text-decoration:none">request4</a></button>
-    <button class="w3-bar-item w3-button tablink"> <a href="/postLastHour" style="text-decoration:none">request5</a></button>
-    <button class="w3-bar-item w3-button tablink"> <a href="/index/" style="text-decoration:none">request6</a></button>
-    <button class="w3-bar-item w3-button tablink"> <a href="/Post/new/" style="text-decoration:none">request7</a></button>
-    <button class="w3-bar-item w3-button tablink"> <a href="/getClientIp" style="text-decoration:none">request8</a></button>
+<div class="w3-bar-center w3-sand w3-center">
+    <button class="w3-bar-item w3-button tablink"> <a href="/Post" style="text-decoration:none">Post</a></button>
+    <button class="w3-bar-item w3-button tablink"> <a href="/Post/new/" style="text-decoration:none">New Post</a></button>
+    <button class="w3-bar-item w3-button tablink"> <a href="/numberOfPosts" style="text-decoration:none">Number of posts</a></button>
+    <button class="w3-bar-item w3-button tablink"> <a href="/<username>/<id>" style="text-decoration:none">Request4</a></button>
+    <button class="w3-bar-item w3-button tablink"> <a href="/postLastHour" style="text-decoration:none">Json - Last Posts</a></button>
+    <button class="w3-bar-item w3-button tablink"> <a href="/index/" style="text-decoration:none">Search</a></button>
 </div>
 
 
 </body>
 
 
-<div class="w3-container w3-margin-bottom">
+<div class="w3-container w3-margin-bottom w3-sand">
 {%block singUp%}
 {%endblock%}
 {% block login %}
@@ -63,4 +59,3 @@
 {%block getClientIp%}
 {%endblock%}
 </div>
-

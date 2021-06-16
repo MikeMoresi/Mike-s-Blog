@@ -8,10 +8,10 @@
          {{ form.as_p }}
          {%if my_query == True %}
          {%endif%}
-         <button type="submit" class="save btn btn-default">Save</button>
+         <button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" type="submit" class="save btn btn-default">Save</button>
      </form>
 {% else %}
 <h2>OPS! You are not logged in</h2>
-<button type="submit"><a href="{% url 'logout' %}">Login</a></button>
+<button style="text-decoration:none" type="submit"><a href="{% url 'logout' %}" style="text-decoration:none">Login</a></button>
 {% endif %}
 {% endblock %}
