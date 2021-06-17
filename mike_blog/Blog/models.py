@@ -3,7 +3,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from .utils import sendTransaction
 import hashlib
-
+import web3
+from web3 import Web3
 # Create your models here.
 
 class Post(models.Model):
